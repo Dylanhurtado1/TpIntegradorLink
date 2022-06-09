@@ -20,7 +20,7 @@ public class ProductoController {
 	@Autowired//asocia el atributo con el repo que tengo
 	private RepoProductoMem repo;
 
-	@GetMapping("")
+	@GetMapping("")//solo devuelve la lista de productos
 	public Collection<Producto>  list(@RequestParam(value ="nombre", required = false) String nombre) {
 			return repo.all();
 	}

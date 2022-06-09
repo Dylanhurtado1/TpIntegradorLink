@@ -3,15 +3,16 @@ package ar.edu.utn.link.tpintegrador.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Cliente {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+	@Transient
 	private String nombre;
 	private String apellido;
 	public String getNombre() {
@@ -30,6 +31,9 @@ public class Cliente {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
+	}
+	public Cliente() {
+		super();
 	}
 	
 	
