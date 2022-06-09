@@ -12,7 +12,6 @@ public class Cliente {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Transient
 	private String nombre;
 	private String apellido;
 	public String getNombre() {
