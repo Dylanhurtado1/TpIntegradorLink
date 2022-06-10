@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/materias")
+@RequestMapping("/vendedores")
 public class VendedorController {
 	private RepoVendedor repo;
 	

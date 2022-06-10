@@ -6,20 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-	
-	private String nombre;
-	
-	private String password;
+public class Proveedor {
 
-	public Integer getId() {
-		return id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String nombre;
+
+	public Proveedor(String nombre) {
+		super();
+		this.nombre = nombre;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Proveedor() {
+		super();
 	}
 
 	public String getNombre() {
@@ -30,17 +30,4 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public Usuario(Integer id, String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-	}
-
-	public Usuario() {
-		super();
-	}
-	
-	
-	
-	
 }

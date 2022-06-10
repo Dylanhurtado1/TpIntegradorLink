@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -18,8 +17,10 @@ public class Vendedor {
 	private String apellido;
 	
 	
-	@ManyToMany
+	@OneToMany
 	private Collection<Producto> productos;
+	@OneToMany//un vendedor tiene muchos proveedores
+	private Collection<Proveedor> proveedores;
 	
 	public String getNombre() {
 		return nombre;
@@ -40,6 +41,25 @@ public class Vendedor {
 	}
 	public Vendedor() {
 		super();
+	}
+	public Collection<Producto> getProductos() {
+		return productos;
+	}
+	public void setProductos(Collection<Producto> productos) {
+		this.productos = productos;
+	}
+	public Collection<Proveedor> getProveedores() {
+		return proveedores;
+	}
+	public void setProveedores(Collection<Proveedor> proveedores) {
+		this.proveedores = proveedores;
+	}
+	public Vendedor(String nombre, String apellido, Collection<Producto> productos, Collection<Proveedor> proveedores) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.productos = productos;
+		this.proveedores = proveedores;
 	}
 	
 

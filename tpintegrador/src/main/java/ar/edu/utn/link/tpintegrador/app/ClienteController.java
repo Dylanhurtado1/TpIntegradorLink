@@ -1,6 +1,6 @@
 package ar.edu.utn.link.tpintegrador.app;
 
-import java.util.Collection;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +18,25 @@ import ar.edu.utn.link.tpintegrador.model.Cliente;
 @RequestMapping("/clientes")//mapeo con la url que va a matchear
 public class ClienteController {
 
-	@Autowired//asocia el atributo con el repo que tengo
-	private RepoClienteMem repo;
+
 	
 	
-	@GetMapping("")
-	public Collection<Cliente>  list(@RequestParam(value ="nombre", required = false) String nombre) {
-			return repo.all();
-	}
 	
-	@PostMapping("")//con esto agrego materias
-	public String post(@RequestBody Cliente cliente){//despues hago la validez para que no incluya un producto que ya existe
-			repo.save(cliente);
-			return "ok";
-		}
+	
+	
+	//@Autowired//asocia el atributo con el repo que tengo
+	//private RepoClienteMem repo;
+	
+	
+//	@GetMapping("")
+//	public Collection<Cliente>  list(@RequestParam(value ="nombre", required = false) String nombre) {
+//			return repo.all();
+//	}
+	
+//	@PostMapping("")//con esto agrego materias
+//	public String post(@RequestBody Cliente cliente){//despues hago la validez para que no incluya un producto que ya existe
+//			repo.save(cliente);
+//			return "ok";
+//		}
 	//creo que termine alta de clientes
 }
