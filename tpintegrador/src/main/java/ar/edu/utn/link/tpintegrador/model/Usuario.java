@@ -7,11 +7,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Usuario {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	private String nombre;
-	
+
 	private String password;
 
 	public Integer getId() {
@@ -39,8 +40,5 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-	
-	
-	
-	
+
 }

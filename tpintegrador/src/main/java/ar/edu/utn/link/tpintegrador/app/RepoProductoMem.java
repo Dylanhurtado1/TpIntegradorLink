@@ -12,20 +12,20 @@ import ar.edu.utn.link.tpintegrador.model.Producto;
 public class RepoProductoMem {
 
 	private Collection<Producto> productos;
-	
+
 	public RepoProductoMem() {
 		super();
-		List<Producto> of =  List.of(new Producto("Leche",150),new Producto("Huevo",450),new Producto("Aceite",220),
-		new Producto("Don Satur",70),new Producto("Agua",50));
-        productos = new ArrayList<Producto>(of);	//Con esto puedo agregar materias
+		List<Producto> of = List.of(new Producto("Leche", 150), new Producto("Huevo", 450), new Producto("Aceite", 220),
+				new Producto("Don Satur", 70), new Producto("Agua", 50));
+		productos = new ArrayList<Producto>(of); // Con esto puedo agregar materias
 	}
-	
-	public Collection<Producto> all(){
+
+	public Collection<Producto> all() {
 		return productos;
 	}
-	
-    public void save(Producto producto){
+
+	public void save(Producto producto) {
 		this.productos.add(producto);
 	}
-	
+
 }

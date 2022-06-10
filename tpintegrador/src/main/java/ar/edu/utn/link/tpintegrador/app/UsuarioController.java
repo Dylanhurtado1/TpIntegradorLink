@@ -21,20 +21,19 @@ public class UsuarioController {
 		Iterable<Usuario> lista = repousuario.findAll();
 		return ResponseEntity.ok(lista);
 	}
-	
+
 	@PostMapping("/usuarios")
-	public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario){
-		
-	Usuario newUsuario = repousuario.save(usuario);
+	public ResponseEntity<?> agregarUsuario(@RequestBody Usuario usuario) {
+
+		Usuario newUsuario = repousuario.save(usuario);
 		return ResponseEntity.ok(newUsuario);
 	}
-	
+
 	@PutMapping("/usuarios")
-	public ResponseEntity<?> modificarUsuario(@RequestBody Usuario usuario){
-		
+	public ResponseEntity<?> modificarUsuario(@RequestBody Usuario usuario) {
+
 		Usuario newUsuario = repousuario.save(usuario);
-			return ResponseEntity.ok(newUsuario);
-		}
-		
+		return ResponseEntity.ok(newUsuario);
+	}
 
 }

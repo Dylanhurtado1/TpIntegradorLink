@@ -2,12 +2,12 @@ package ar.edu.utn.link.tpintegrador.app;
 
 import ar.edu.utn.link.tpintegrador.model.Producto;
 
-public class ProductoRepetidoException extends Exception{
+public class ProductoRepetidoException extends Exception {
 
-private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;
+
 	private Producto producto;
-	
+
 	public ProductoRepetidoException(Producto producto) {
 		this.producto = producto;
 	}
@@ -36,5 +36,5 @@ private static final long serialVersionUID = 1L;
 	public Producto getProducto() {
 		return producto;
 	}
-	
+
 }

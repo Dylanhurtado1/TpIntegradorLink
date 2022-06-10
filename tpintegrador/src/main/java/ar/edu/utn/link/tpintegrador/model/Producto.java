@@ -9,7 +9,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Producto {
 
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	private String nombre;
@@ -43,7 +44,6 @@ public class Producto {
 	public void aplicarDescuento(double descuento) {
 		precio = precio - descuento;
 	}
-	
 
 	public double getAnio() {
 		return anio;
@@ -73,11 +73,11 @@ public class Producto {
 //			return true;
 //		if (obj == null)
 //			return false;
-		//if (getClass() != obj.getClass())
-		//	return false;
-		//Producto other = (Producto) obj;
-		//return Objects.equals(nombre, other.nombre);
-	//}
+	// if (getClass() != obj.getClass())
+	// return false;
+	// Producto other = (Producto) obj;
+	// return Objects.equals(nombre, other.nombre);
+	// }
 
 	public Producto(String nombre, double precio, double anio) {
 		super();
@@ -93,6 +93,5 @@ public class Producto {
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
-	
 
 }

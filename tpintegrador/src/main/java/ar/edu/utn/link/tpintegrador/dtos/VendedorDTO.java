@@ -10,20 +10,19 @@ import ar.edu.utn.link.tpintegrador.model.Proveedor;
 public interface VendedorDTO {
 
 	String getNombre();
-	
+
 	String getApellido();
-	
+
 	@Value("#{target.nombre} #{target.apellido}")
 	String getNombreCompleto();
-	
+
 	@Value("#{target.productos.size()}")
 	int getCantProductos();
-	
+
 	@Value("#{target.productos}")
 	List<Producto> getProductos();
-	
+
 	@Value("#{target.proveedores}")
 	List<Proveedor> getProveedores();
-	
-	
+
 }
