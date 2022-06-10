@@ -1,10 +1,12 @@
 package ar.edu.utn.link.tpintegrador.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -14,6 +16,9 @@ public class Cliente {
 	private Integer id;
 	private String nombre;
 	private String apellido;
+	
+	@OneToMany
+	private Collection<Producto> productos;
 	
 	public String getNombre() {
 		return nombre;
