@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.utn.link.tpintegrador.model.Cliente;
 
-@RestController // aviso que esta clase es un controller
-@RequestMapping("/clientes") // mapeo con la url que va a matchear
+//@RestController // aviso que esta clase es un controller
+//@RequestMapping("/clientes") // mapeo con la url que va a matchear
 public class ClienteController {
 
 	// @Autowired//asocia el atributo con el repo que tengo
