@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 
 import ar.edu.utn.link.tpintegrador.model.Producto;
+import ar.edu.utn.link.tpintegrador.model.Usuario;
 
 public interface ClienteDTO {
 
@@ -15,5 +16,6 @@ public interface ClienteDTO {
 	@Value("#{target.productos}")
 	List<Producto> getProductos();
 	
-
+	@Value("#{target.usuario}")
+	Usuario getUsuario();
 }

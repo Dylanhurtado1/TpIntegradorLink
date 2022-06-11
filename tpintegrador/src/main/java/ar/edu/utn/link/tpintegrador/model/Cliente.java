@@ -50,12 +50,10 @@ public class Cliente {
 	}
 
 	public void comprar(Producto producto) {
-		// if(curso.estaIncripto(this)) {
-		// throw new InscripcionException("ya esta inscripto",curso,this);
-		// }
-		// curso.anotar(this);
 		this.productos.add(producto);
 	}
+	
+	
 
 	public Integer getId() {
 		return id;
