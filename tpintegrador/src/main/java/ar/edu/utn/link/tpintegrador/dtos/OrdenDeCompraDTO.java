@@ -9,17 +9,17 @@ import ar.edu.utn.link.tpintegrador.model.Producto;
 public interface OrdenDeCompraDTO {
 
 	String getNombre();
-	
+
 	@Value("#{target.productos}")
 	List<Producto> getProductos();
-	
+
 	@Value("#{target.productos.size()}")
 	int getCantProductos();
-	
+
 	@Value("#{target.cliente.getNombre()}")
 	String getNombreCliente();
-	
+
 	@Value("#{target.vendedor.getNombre()}")
 	String getNombreVendedor();
-	
+
 }

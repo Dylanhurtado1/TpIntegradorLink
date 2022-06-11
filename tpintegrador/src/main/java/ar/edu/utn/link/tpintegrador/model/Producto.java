@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Producto {
@@ -16,7 +16,7 @@ public class Producto {
 	private String nombre;
 	private double precio;
 	private double anio;
-	@OneToOne
+	@ManyToOne//un producto tiene muchos vendedores
 	private Vendedor vendedor;
 
 	public Producto(String nombre, double precio) {
