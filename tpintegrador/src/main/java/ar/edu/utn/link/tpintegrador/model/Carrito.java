@@ -1,6 +1,7 @@
 package ar.edu.utn.link.tpintegrador.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,42 +11,32 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Cliente {
+public class Carrito {// estoy haciendo esto para que en una orden de Compra esten todos los productos
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String nombre;
-	private String apellido;
-	@OneToOne
+		
+	@OneToMany//la lista de productos que tiene un usario
+	private Collection<Producto> productos;
+
+	@OneToOne//cada carrito tiene un usuario
 	private Usuario usuario;
 
-//	@OneToMany
-//	private Collection<Producto> productos;
-
-	public String getNombre() {
-		return nombre;
+	public Collection<Producto> getProductos() {
+		return productos;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setProductos(Collection<Producto> productos) {
+		this.productos = productos;
 	}
 
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public Cliente(String nombre, String apellido) {
+	public Carrito(Collection<Producto> productos) {
 		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
+		this.productos = productos;
 	}
 
-	public Cliente() {
+	public Carrito() {
 		super();
 	}
 
@@ -65,5 +56,5 @@ public class Cliente {
 		this.usuario = usuario;
 	}
 
-
+	
 }

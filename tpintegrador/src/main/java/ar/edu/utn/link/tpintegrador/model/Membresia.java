@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Membresia extends Promocion1{//implements Promocion {
+public class Membresia extends Promocion1{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,8 +36,17 @@ public class Membresia extends Promocion1{//implements Promocion {
 		this.descuento = descuento;
 	}
 
-	public Membresia(String nombre, double descuento) {
+	
+
+	public Membresia(double descuento) {
 		super();
+		this.descuento = descuento;
+	}
+	
+
+	public Membresia(Integer id, String nombre, double descuento) {
+		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.descuento = descuento;
 	}

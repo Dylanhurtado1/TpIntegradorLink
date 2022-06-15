@@ -1,13 +1,13 @@
 package ar.edu.utn.link.tpintegrador.model;
 
-import java.util.Collection;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class OrdenDeCompra {
@@ -15,55 +15,68 @@ public class OrdenDeCompra {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	private String nombre;
-	@ManyToOne
-	private Cliente cliente;
-	@ManyToOne
-	private Vendedor vendedor;
-	@OneToMany
-	private Collection<Producto> productos;
-
-	public OrdenDeCompra(Cliente cliente, Vendedor vendedor, Collection<Producto> productos) {
-		super();
-		this.cliente = cliente;
-		this.vendedor = vendedor;
-		this.productos = productos;
-	}
+	@OneToOne
+	private Usuario usuario;
+	
+//	@OneToMany
+//	private Collection<Producto> productos;
+	
+	@OneToOne
+	private Producto producto;
+	
+	private double precioFinal;
 
 	public OrdenDeCompra() {
 		super();
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+/*	public OrdenDeCompra(Usuario usuario, Collection<Producto> productos) {
+		super();
+		this.usuario = usuario;
+		this.productos = productos;
+	} */
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
+	/*
 	public Collection<Producto> getProductos() {
 		return productos;
-	}
+	} */
 
+	/*
 	public void setProductos(Collection<Producto> productos) {
 		this.productos = productos;
+	}*/
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Producto getProducto() {
+		return producto;
 	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public double getPrecioFinal() {
+		return precioFinal;
+	}
+
+	public void setPrecioFinal(double precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+	
 
 }

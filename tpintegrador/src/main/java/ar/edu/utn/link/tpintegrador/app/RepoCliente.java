@@ -12,5 +12,7 @@ import ar.edu.utn.link.tpintegrador.model.Cliente;
 public interface RepoCliente extends PagingAndSortingRepository<Cliente, Integer> {
 
 	Optional<Cliente> findByNombre(String nombre);
+	
+
 
 }

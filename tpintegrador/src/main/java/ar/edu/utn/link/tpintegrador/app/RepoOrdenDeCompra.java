@@ -10,6 +10,9 @@ import ar.edu.utn.link.tpintegrador.model.OrdenDeCompra;
 @RepositoryRestResource(path = "ordenesDeCompra")
 public interface RepoOrdenDeCompra extends PagingAndSortingRepository<OrdenDeCompra, Integer> {
 
-	Optional<OrdenDeCompra> findByNombre(String nombre);
+ //	Optional<OrdenDeCompra> findByNombre(String nombre);
 
+	
+	
+	
 }

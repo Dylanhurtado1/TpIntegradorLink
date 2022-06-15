@@ -13,9 +13,6 @@ public interface ClienteDTO {
 
 	String getApellido();
 	
-	@Value("#{target.productos}")
-	List<Producto> getProductos();
-	
 	@Value("#{target.usuario}")
 	Usuario getUsuario();
 }
