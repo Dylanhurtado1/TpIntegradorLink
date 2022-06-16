@@ -56,5 +56,12 @@ public class Carrito {// estoy haciendo esto para que en una orden de Compra est
 		this.usuario = usuario;
 	}
 
+	public double obtenerPrecioFinalDeOrden(Collection<Producto> productos) {
+		double precioFin = 0;
+		for(Producto p :productos) {
+		precioFin = precioFin + p.getPrecio();
+		 }
+	return precioFin;
+	}
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ar.edu.utn.link.tpintegrador.app.RepoCarrito;
 import ar.edu.utn.link.tpintegrador.app.RepoOrdenDeCompra;
 import ar.edu.utn.link.tpintegrador.app.RepoProducto;
 import ar.edu.utn.link.tpintegrador.app.RepoPromocion;
@@ -29,13 +30,13 @@ public class UsuarioControllerComplement {
 	@Autowired
 	RepoOrdenDeCompra repoOrden;
 
-	//@Autowired
-	//RepoCarrito repoCarrito;
-	
 	@Autowired
 	RepoPromocion repoPromocion;
+	
+	@Autowired
+	RepoCarrito repoCarrito;
 
-    @Transactional // EL USUARIO COMPRA UN PRODUCTO
+/*    @Transactional // EL USUARIO COMPRA UN PRODUCTO
 	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/comprar")
 	public @ResponseBody String comprar(@PathVariable("usuarioId") Integer usuarioId, @RequestBody Integer productoId) {
 
@@ -51,7 +52,7 @@ public class UsuarioControllerComplement {
 		Producto producto = opcionalProducto.get();
 
 		usuario.comprar(producto);// definir metodo comprar para usuario
-        usuario.aplicarDescuento(producto); //PROBLEMAS DE QUE ME CAMBIA EL PRECIO DEL PRODUCTO
+       // usuario.aplicarDescuento(producto); //PROBLEMAS DE QUE ME CAMBIA EL PRECIO DEL PRODUCTO
 		// Vendedor vendedor = producto.getVendedor();
 		OrdenDeCompra orden = new OrdenDeCompra();
 		orden.setUsuario(usuario); // orden.setVendedor(vendedor);
@@ -60,7 +61,7 @@ public class UsuarioControllerComplement {
 		repoOrden.save(orden);// con esto los relaciona
 
 		return "ok";
-	} 
+	} */
 
     @Transactional // EL USUARIO COMPRA UN PRODUCTO
 	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/obtenerPromocion")
@@ -84,9 +85,9 @@ public class UsuarioControllerComplement {
 
 
 
-/*	@Transactional // EL USUARIO MUCHOS PRODUCTOS NO ME FUNCAAA
-	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/comprar")
-	public @ResponseBody String comprar(@PathVariable("usuarioId") Integer usuarioId,
+@Transactional // EL USUARIO MUCHOS PRODUCTOS NO ME FUNCAAA
+	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/comprarCarrito")
+	public @ResponseBody String comprarCarrito(@PathVariable("usuarioId") Integer usuarioId,
 			@RequestBody Integer carritoId) {
 
 		Optional<Usuario> opcionalUsuario = repoUsuario.findById(usuarioId);// encuentra a ese alumno de la url
@@ -105,15 +106,16 @@ public class UsuarioControllerComplement {
 
 		OrdenDeCompra orden = new OrdenDeCompra();
 
+		double precioFin = carrito.obtenerPrecioFinalDeOrden(carrito.getProductos());
 		orden.setUsuario(usuario);
-		// orden.setProductos(carrito.getProductos());
-		//Collection<Producto> resultado = new Collection<Producto>(carrito.getProductos());
-		// orden.getProductos().addAll(carrito.getProductos());
-		orden.setProductos(carrito.getProductos());
+		orden.getProductos().addAll(carrito.getProductos());
+		//FALTO EL PRECIO FINALLL
+		orden.setPrecioFinal(precioFin);
+		//orden.setProductos(carrito.getProductos());
 		repoOrden.save(orden);// con esto los relaciona
 
 		return "ok";
-	}*/
+	}
 	
 
 }

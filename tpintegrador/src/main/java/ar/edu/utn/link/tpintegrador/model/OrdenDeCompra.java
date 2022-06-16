@@ -2,6 +2,9 @@ package ar.edu.utn.link.tpintegrador.model;
 
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,17 +21,28 @@ public class OrdenDeCompra {
 	@OneToOne
 	private Usuario usuario;
 	
-//	@OneToMany
-//	private Collection<Producto> productos;
+    @OneToMany
+	private Collection<Producto> productos = new ArrayList<>();
 	
-	@OneToOne
-	private Producto producto;
+	//@OneToOne
+	//private Producto producto;
 	
 	private double precioFinal;
 
 	public OrdenDeCompra() {
 		super();
 	}
+	
+	
+
+public OrdenDeCompra(Usuario usuario, Collection<Producto> productos, double precioFinal) {
+		super();
+		this.usuario = usuario;
+		this.productos = productos;
+		this.precioFinal = precioFinal;
+	}
+
+
 
 /*	public OrdenDeCompra(Usuario usuario, Collection<Producto> productos) {
 		super();
@@ -44,15 +58,15 @@ public class OrdenDeCompra {
 		this.id = id;
 	}
 
-	/*
+	
 	public Collection<Producto> getProductos() {
 		return productos;
-	} */
+	} 
 
-	/*
+	
 	public void setProductos(Collection<Producto> productos) {
 		this.productos = productos;
-	}*/
+	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -62,13 +76,7 @@ public class OrdenDeCompra {
 		this.usuario = usuario;
 	}
 
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
+	
 
 	public double getPrecioFinal() {
 		return precioFinal;
@@ -77,6 +85,8 @@ public class OrdenDeCompra {
 	public void setPrecioFinal(double precioFinal) {
 		this.precioFinal = precioFinal;
 	}
+	
+	
 	
 
 }

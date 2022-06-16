@@ -14,7 +14,6 @@ public abstract class Promocion1 {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// @Column(name = "promocion_codigo")
 	private Integer id;
 
 	String nombre;

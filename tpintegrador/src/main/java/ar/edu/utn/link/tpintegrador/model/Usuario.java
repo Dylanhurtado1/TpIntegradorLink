@@ -55,7 +55,7 @@ public class Usuario {
 	}
 
 	public void comprarCarrito(Carrito carrito) {
-		// primero conseguir los productos del carrito
+		
 
 		Collection<Producto> productosDeCarrito = carrito.getProductos();//productos del carrito
 		//Collection<Producto> productosNuevos = new Collection<Producto>(productosDeCarrito);

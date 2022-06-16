@@ -12,4 +12,8 @@ public interface UsuarioDTO {
 	
 	@Value("#{target.productos}") //ACA SI VA PORQUE EL USUARIO TIENE UNA LISTA DE PRODUCTOS
 	List<Producto> getProductos();
+	
+	@Value("#{target.promocion}") //ACA SI VA PORQUE EL USUARIO TIENE UNA LISTA DE PRODUCTOS
+	List<Producto> getPromocion();
+	
 }
