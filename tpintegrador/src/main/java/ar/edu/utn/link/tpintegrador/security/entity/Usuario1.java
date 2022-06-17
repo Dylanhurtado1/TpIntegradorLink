@@ -1,5 +1,6 @@
 package ar.edu.utn.link.tpintegrador.security.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import ar.edu.utn.link.tpintegrador.model.Producto;
 
 
 @Entity
@@ -36,6 +40,9 @@ public class Usuario1 {
 	    inverseJoinColumns = @JoinColumn(name = "rol_id"))
 	    private Set<Rol> roles = new HashSet<>(); //muchos a muchos
 
+	    
+	    @OneToMany
+		private Collection<Producto> productos;
 	    public Usuario1() {
 	    }
 
@@ -106,5 +113,28 @@ public class Usuario1 {
 	        this.roles = roles;
 	    }
 	
+
+		public void comprar(Producto producto) {
+			this.productos.add(producto);
+		}
+
+		public Collection<Producto> getProductos() {
+			return productos;
+		}
+
+		public void setProductos(Collection<Producto> productos) {
+			this.productos = productos;
+		}
+
+		public Usuario1(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
+				@NotNull String password, @NotNull Set<Rol> roles, Collection<Producto> productos) {
+			super();
+			this.nombre = nombre;
+			this.nombreUsuario = nombreUsuario;
+			this.email = email;
+			this.password = password;
+			this.roles = roles;
+			this.productos = productos;
+		}
 	
 }

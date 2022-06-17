@@ -41,7 +41,7 @@ public class ProductoController {
 	        if(!productoService.existsById(id))
 	            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 	        Producto producto = productoService.getOne(id).get();
-	        return new ResponseEntity(producto, HttpStatus.OK);
+	        return new ResponseEntity(producto, HttpStatus.OK); //responde con un producto
 	    }
 
 	    @GetMapping("/detailname/{nombre}") // devuelve producto segun nombre

@@ -2,15 +2,17 @@ package ar.edu.utn.link.tpintegrador.app;
 
 import java.util.Optional;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import ar.edu.utn.link.tpintegrador.dtos.UsuarioDTO;
 import ar.edu.utn.link.tpintegrador.model.Usuario;
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
 
-@RepositoryRestResource(path = "usuarios", excerptProjection = 	UsuarioDTO.class)
-public interface RepoUsuario extends PagingAndSortingRepository<Usuario, Integer> {
+//@RepositoryRestResource(path = "usuarios", excerptProjection = 	UsuarioDTO.class)
+@Repository
+public interface RepoUsuario extends JpaRepository<Usuario1, Integer> {
 
-	Optional<Usuario> findByNombre(String nombre);
+	Optional<Usuario1> findByNombre(String nombre);
+	boolean existsByNombre(String nombre);
 
 }

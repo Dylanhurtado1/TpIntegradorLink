@@ -1,54 +1,53 @@
 package ar.edu.utn.link.tpintegrador.model;
 
-
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
+
 @Entity
-public class OrdenDeCompra {
+public class OrdenDeCompra { // voy a poner a un producto
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@OneToOne
-	private Usuario usuario;
-	
-    @ManyToMany
-	private Collection<Producto> productos = new ArrayList<>();
-	
-	//@OneToOne
-	//private Producto producto;
-	
+	private Usuario1 usuario;
+
+	// @ManyToMany
+	// private Collection<Producto> productos = new ArrayList<>();
+
+	@OneToOne
+	private Producto producto;
+
 	private double precioFinal;
 
 	public OrdenDeCompra() {
 		super();
 	}
-	
-	
 
-public OrdenDeCompra(Usuario usuario, Collection<Producto> productos, double precioFinal) {
+	public OrdenDeCompra(Usuario1 usuario, Producto producto, double precioFinal) {
 		super();
 		this.usuario = usuario;
-		this.productos = productos;
+		this.producto = producto;
 		this.precioFinal = precioFinal;
 	}
 
+	/*
+	 * public OrdenDeCompra(Usuario usuario, Collection<Producto> productos) {
+	 * super(); this.usuario = usuario; this.productos = productos; }
+	 */
 
+	public Producto getProducto() {
+		return producto;
+	}
 
-/*	public OrdenDeCompra(Usuario usuario, Collection<Producto> productos) {
-		super();
-		this.usuario = usuario;
-		this.productos = productos;
-	} */
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
 
 	public Integer getId() {
 		return id;
@@ -58,25 +57,13 @@ public OrdenDeCompra(Usuario usuario, Collection<Producto> productos, double pre
 		this.id = id;
 	}
 
-	
-	public Collection<Producto> getProductos() {
-		return productos;
-	} 
-
-	
-	public void setProductos(Collection<Producto> productos) {
-		this.productos = productos;
-	}
-
-	public Usuario getUsuario() {
+	public Usuario1 getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Usuario1 usuario) {
 		this.usuario = usuario;
 	}
-
-	
 
 	public double getPrecioFinal() {
 		return precioFinal;
@@ -85,8 +72,5 @@ public OrdenDeCompra(Usuario usuario, Collection<Producto> productos, double pre
 	public void setPrecioFinal(double precioFinal) {
 		this.precioFinal = precioFinal;
 	}
-	
-	
-	
 
 }

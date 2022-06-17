@@ -87,7 +87,7 @@ public class UsuarioControllerComplement {
 
 
 
-
+/*
 @Transactional // EL USUARIO MUCHOS PRODUCTOS NO ME FUNCAAA
 	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/comprarCarrito")
 	public @ResponseBody String comprarCarrito(@PathVariable("usuarioId") Integer usuarioId,
@@ -119,7 +119,7 @@ public class UsuarioControllerComplement {
 		repoOrden.save(orden);// con esto los relaciona
 
 		return "ok";
-	}
+	}*/
 	
 
 }

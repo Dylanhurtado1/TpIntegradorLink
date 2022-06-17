@@ -28,6 +28,8 @@ public class ClienteControllerComplement {
 	@Autowired
 	RepoUsuario repoUsuario;
 
+	/*
+	
 	//EL CLIENTE SOLO PUEDE REGISTRARSE
 	@Transactional // YA FUNCIONA QUE EL CLIENTE SE LE SETEA EL USUARIO
 	@RequestMapping(method = RequestMethod.POST, value = "/clientes/{clienteId}/registrar")
@@ -50,7 +52,7 @@ public class ClienteControllerComplement {
 		//repoUsuario.save(usuario);//ESTO ES LA PERSISTENCIA, ESTO ESTA MALL, ESTOY HACIENDO QUE UN 
 		//USUARIO SE GUARDE DE NUEVO
 		return "ok";
-	}
+	}  */
 
 	@RequestMapping(method = RequestMethod.GET, value = "/dolar")
 	public Double precioEnDolares() {
