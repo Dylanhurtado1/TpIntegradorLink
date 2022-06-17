@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.utn.link.tpintegrador.model.Producto;
-
+/*
 @Repository
 public class RepoProductoMem {
 
@@ -15,8 +15,8 @@ public class RepoProductoMem {
 
 	public RepoProductoMem() {
 		super();
-		List<Producto> of = List.of(new Producto("Leche", 150), new Producto("Huevo", 450), new Producto("Aceite", 220),
-				new Producto("Don Satur", 70), new Producto("Agua", 50));
+		List<Producto> of = List.of(new Producto("Leche", 150.33), new Producto("Huevo", 450.23), new Producto("Aceite", 220.324),
+				new Producto("Don Satur", 70.00), new Producto("Agua", 50.232));
 		productos = new ArrayList<Producto>(of); // Con esto puedo agregar materias
 	}
 
@@ -28,4 +28,4 @@ public class RepoProductoMem {
 		this.productos.add(producto);
 	}
 
-}
+}*/

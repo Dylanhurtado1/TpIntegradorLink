@@ -12,7 +12,7 @@ public class Membresia extends Promocion1{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	String nombre;
-	double descuento;
+
 
 	@Override
 	public void aplicarDescuento(Producto producto) {
@@ -28,23 +28,23 @@ public class Membresia extends Promocion1{
 		this.nombre = nombre;
 	}
 
-	public double getDescuento() {
+	public Float getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(double descuento) {
+	public void setDescuento(Float descuento) {
 		this.descuento = descuento;
 	}
 
 	
 
-	public Membresia(double descuento) {
+	public Membresia(Float descuento) {
 		super();
 		this.descuento = descuento;
 	}
 	
 
-	public Membresia(Integer id, String nombre, double descuento) {
+	public Membresia(Integer id, String nombre, Float descuento) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

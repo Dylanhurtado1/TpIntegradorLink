@@ -14,15 +14,22 @@ public class Producto {
 	private Integer id;
 
 	private String nombre;
-	private double precio;
-	private double anio;
+	private Float precio;
 	@ManyToOne//un producto tiene muchos vendedores
 	private Vendedor vendedor;
 
-	public Producto(String nombre, double precio) {
+	public Producto(String nombre, Float precio) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -33,24 +40,23 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public double getPrecio() {
+	public Float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
 
-	public void aplicarDescuento(double descuento) {
+	public void aplicarDescuento(Float descuento) {
 		precio = precio - descuento;
 	}
 
-	public double getAnio() {
-		return anio;
-	}
-
-	public void setAnio(double anio) {
-		this.anio = anio;
+	public Producto(String nombre, Float precio, Vendedor vendedor) {
+		super();
+		this.nombre = nombre;
+		this.precio = precio;
+		this.vendedor = vendedor;
 	}
 
 	public Producto() {
@@ -79,12 +85,6 @@ public class Producto {
 	// return Objects.equals(nombre, other.nombre);
 	// }
 
-	public Producto(String nombre, double precio, double anio) {
-		super();
-		this.nombre = nombre;
-		this.precio = precio;
-		this.anio = anio;
-	}
 
 	public Vendedor getVendedor() {
 		return vendedor;

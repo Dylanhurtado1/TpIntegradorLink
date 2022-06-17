@@ -63,7 +63,10 @@ public class UsuarioControllerComplement {
 		return "ok";
 	} */
 
-    @Transactional // EL USUARIO COMPRA UN PRODUCTO
+	
+	
+	//ESTA PARTE LA SALTEO UN TOQUE HASTA PENSAR LA LISTA DE PROMOCIONES
+/*    @Transactional // EL USUARIO COMPRA UN PRODUCTO
 	@RequestMapping(method = RequestMethod.POST, value = "/usuarios/{usuarioId}/obtenerPromocion")
 	public @ResponseBody String obtenerPromocion(@PathVariable("usuarioId") Integer usuarioId, @RequestBody Integer promocionId) {
 
@@ -79,7 +82,7 @@ public class UsuarioControllerComplement {
 		Promocion1 promocion = opcionalPromocion.get();
 		usuario.setPromocion(promocion);
 		return "ok";
-	} 
+	} */
 
 
 
@@ -106,12 +109,13 @@ public class UsuarioControllerComplement {
 
 		OrdenDeCompra orden = new OrdenDeCompra();
 
-		double precioFin = carrito.obtenerPrecioFinalDeOrden(carrito.getProductos());
+		double precioFinProductos = carrito.obtenerPrecioFinalDeOrden(carrito.getProductos());
+	    double descuentoFinal =	usuario.obtenerDescuentoDePromociones();
+        double precioFinal = precioFinProductos - descuentoFinal;
 		orden.setUsuario(usuario);
 		orden.getProductos().addAll(carrito.getProductos());
-		//FALTO EL PRECIO FINALLL
-		orden.setPrecioFinal(precioFin);
-		//orden.setProductos(carrito.getProductos());
+		orden.setPrecioFinal(precioFinal);
+		
 		repoOrden.save(orden);// con esto los relaciona
 
 		return "ok";

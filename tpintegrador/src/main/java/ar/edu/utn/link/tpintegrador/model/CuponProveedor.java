@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class CuponProveedor  extends Promocion1{
@@ -12,9 +11,11 @@ public class CuponProveedor  extends Promocion1{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	double descuento;
+
 	
 	private String nombre;
+	
+//	private double descuento;
 
 	@Override
 	public void aplicarDescuento(Producto producto) {
@@ -22,17 +23,18 @@ public class CuponProveedor  extends Promocion1{
 		producto.aplicarDescuento(descuento);
 	}
 
-	public CuponProveedor(String nombre, double descuento) {
+	public CuponProveedor(String nombre, Float descuento) {
 		super();
 		this.nombre = nombre;
 		this.descuento = descuento;
 	}
 
-	public double getDescuento() {
+	
+	public Float getDescuento() {
 		return descuento;
 	}
-
-	public void setDescuento(double descuento) {
+    
+	public void setDescuento(Float descuento) {
 		this.descuento = descuento;
 	}
 
@@ -44,6 +46,7 @@ public class CuponProveedor  extends Promocion1{
 		this.id = id;
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}

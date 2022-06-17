@@ -5,7 +5,7 @@ package ar.edu.utn.link.tpintegrador;
 
 import ar.edu.utn.link.tpintegrador.model.CuponProveedor;
 import ar.edu.utn.link.tpintegrador.model.Producto;
-
+/*
 public class TestPromocion {
 
 Producto leche =  new Producto("leche",250);
@@ -20,4 +20,4 @@ public void aplicar() {
 }
 
 
-}
+}*/
