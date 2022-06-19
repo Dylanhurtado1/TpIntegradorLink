@@ -1,7 +1,7 @@
 package ar.edu.utn.link.tpintegrador.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class Carrito {// estoy haciendo esto para que en una orden de Compra est
 	private Integer id;
 		
 	@OneToMany//la lista de productos que tiene un usario
-	private Collection<Producto> productos;
+	private Collection<Producto> productos = new ArrayList<Producto>();//para inicializarlo
 
 	@OneToOne//cada carrito tiene un usuario
 	private Usuario usuario;

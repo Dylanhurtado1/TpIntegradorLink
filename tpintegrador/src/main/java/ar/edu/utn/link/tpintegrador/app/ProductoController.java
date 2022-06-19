@@ -23,7 +23,7 @@ import ar.edu.utn.link.tpintegrador.model.Producto;
 import ar.edu.utn.link.tpintegrador.service.ProductoService;
 
 @RestController // aviso que esta clase es un controller
-@RequestMapping("/productos") // mapeo con la url que va a matchear
+@RequestMapping("/producto") // mapeo con la url que va a matchear
 @CrossOrigin(origins = "*")
 public class ProductoController {
 

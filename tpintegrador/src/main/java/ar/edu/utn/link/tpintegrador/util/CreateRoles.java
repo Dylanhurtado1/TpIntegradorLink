@@ -15,10 +15,10 @@ public class CreateRoles implements CommandLineRunner{
 
 	    @Override
 	    public void run(String... args) throws Exception {
-	      /* Rol rolVendedor = new Rol(RolNombre.ROLE_VENDEDOR);
+	     /*Rol rolVendedor = new Rol(RolNombre.ROLE_VENDEDOR);
 	        Rol rolUser = new Rol(RolNombre.ROLE_USER);
 	        rolService.save(rolVendedor);
-	        rolService.save(rolUser); 
-	     */    
-	    }
+	        rolService.save(rolUser); */
+	         
+	    } 
 }
