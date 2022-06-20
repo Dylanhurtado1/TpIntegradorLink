@@ -32,6 +32,10 @@ public class ProductoService {
 	    public void  save(Producto producto){
 	        productoRepository.save(producto);
 	    }
+	    
+	  /*  public void  comprar(Producto producto){
+	        productoRepository.save(producto);
+	    } */
 
 	    public void delete(int id){
 	        productoRepository.deleteById(id);

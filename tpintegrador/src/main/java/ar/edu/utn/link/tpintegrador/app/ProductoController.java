@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.utn.link.tpintegrador.dtos.Mensaje;
 import ar.edu.utn.link.tpintegrador.dtos.ProductoDTO;
+import ar.edu.utn.link.tpintegrador.model.OrdenDeCompra;
 import ar.edu.utn.link.tpintegrador.model.Producto;
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
 import ar.edu.utn.link.tpintegrador.service.ProductoService;
+import ar.edu.utn.link.tpintegrador.service.UsuarioService;
 
 @RestController // aviso que esta clase es un controller
 @RequestMapping("/producto") // mapeo con la url que va a matchear
@@ -29,6 +32,12 @@ public class ProductoController {
 
 	    @Autowired
 	    ProductoService productoService;
+	    
+		@Autowired
+		UsuarioService usuarioService;
+		
+		@Autowired
+		RepoOrdenDeCompra repoOrden;
 
 	    @GetMapping("/lista") //devuelve lista de productos
 	    public ResponseEntity<List<Producto>> list(){
@@ -40,7 +49,7 @@ public class ProductoController {
 	    public ResponseEntity<Producto> getById(@PathVariable("id") int id){
 	        if(!productoService.existsById(id))
 	            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-	        Producto producto = productoService.getOne(id).get();
+	        Producto producto = productoService.getOne(id).get(); // solo retorna un producto con ese id, lo mismo debe pasar con orden De Compra
 	        return new ResponseEntity(producto, HttpStatus.OK); //responde con un producto
 	    }
 
@@ -93,6 +102,27 @@ public class ProductoController {
 	        productoService.delete(id);
 	        return new ResponseEntity(new Mensaje("producto eliminado"), HttpStatus.OK);
 	    }
+	    
+	    
+	    //A ver este metodo comprar
+	    @PreAuthorize("hasRole('USER')") // PERMITE comprar solo a los usuarios
+		@PostMapping("/comprar/{idProducto}") // comprar segun id del producto
+		public ResponseEntity<?> comprar(@PathVariable("idProducto") int idProducto) { // hasta aca todo ok
+			if (!productoService.existsById(idProducto))
+				return new ResponseEntity(new Mensaje("no existe el producto"), HttpStatus.NOT_FOUND);
+			Producto producto = productoService.getOne(idProducto).get(); // con esto me devuelve el producto con ese id
+			 // devuelve el usuario con ese id
+
+		 // se agrega a la lista de productos del usuario
+			OrdenDeCompra orden = new OrdenDeCompra(); // orden.setVendedor(vendedor);
+			orden.setProducto(producto); // ver como tener estooooo
+			orden.setNombreProducto(producto.getNombre());
+			//orden.setNombreVendedor(producto.getNombreVendedor());
+			orden.setPrecioFinal(producto.getPrecio());
+			repoOrden.save(orden);// con esto los relaciona
+
+			return new ResponseEntity(new Mensaje("producto comprado"), HttpStatus.OK);
+		}
 
 	
 	

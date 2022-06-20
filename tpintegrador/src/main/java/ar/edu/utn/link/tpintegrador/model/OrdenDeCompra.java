@@ -16,13 +16,39 @@ public class OrdenDeCompra { // voy a poner a un producto
 
 	@OneToOne
 	private Usuario1 usuario;
+    private String nombreUsuario;
+    private String nombreProducto;
+    
+  private String nombre;
 
 	// @ManyToMany
 	// private Collection<Producto> productos = new ArrayList<>();
 
+
+	public String getNombre() {
+	return nombre;
+}
+
+public OrdenDeCompra(Usuario1 usuario, String nombreUsuario, String nombreProducto, String nombre,
+			Producto producto, double precioFinal) {
+		super();
+		this.usuario = usuario;
+		this.nombreUsuario = nombreUsuario;
+		this.nombreProducto = nombreProducto;
+		this.nombre = nombre;
+		this.producto = producto;
+		this.precioFinal = precioFinal;
+	}
+
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+
 	@OneToOne
 	private Producto producto;
+    
 
+	
 	private double precioFinal;
 
 	public OrdenDeCompra() {
@@ -73,4 +99,23 @@ public class OrdenDeCompra { // voy a poner a un producto
 		this.precioFinal = precioFinal;
 	}
 
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+
+
+	
 }
