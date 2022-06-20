@@ -15,8 +15,33 @@ public class Producto {
 
 	private String nombre;
 	private Float precio;
-	//@ManyToOne//un producto tiene muchos vendedores
-	//private Vendedor vendedor;
+	@ManyToOne//un producto tiene muchos vendedores
+	private Vendedor vendedor;
+	private String nombreVendedor;
+
+	public Producto(String nombre, Float precio, Vendedor vendedor, String nombreVendedor) {
+		super();
+		this.nombre = nombre;
+		this.precio = precio;
+		this.vendedor = vendedor;
+		this.nombreVendedor = nombreVendedor;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public String getNombreVendedor() {
+		return nombreVendedor;
+	}
+
+	public void setNombreVendedor(String nombreVendedor) {
+		this.nombreVendedor = nombreVendedor;
+	}
 
 	public Producto(String nombre, Float precio) {
 		super();

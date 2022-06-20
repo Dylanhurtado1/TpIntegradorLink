@@ -117,7 +117,7 @@ public class ProductoController {
 			OrdenDeCompra orden = new OrdenDeCompra(); // orden.setVendedor(vendedor);
 			orden.setProducto(producto); // ver como tener estooooo
 			orden.setNombreProducto(producto.getNombre());
-			//orden.setNombreVendedor(producto.getNombreVendedor());
+			orden.setNombreVendedor(producto.getNombreVendedor());
 			orden.setPrecioFinal(producto.getPrecio());
 			repoOrden.save(orden);// con esto los relaciona
 
