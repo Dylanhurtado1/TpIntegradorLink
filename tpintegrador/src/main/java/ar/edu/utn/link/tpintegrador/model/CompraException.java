@@ -4,7 +4,7 @@ package ar.edu.utn.link.tpintegrador.model;
 
 public class CompraException extends RuntimeException{
 	
-	private Cliente cliente;
+/*	private Cliente cliente;
 	private Producto producto;
 	
 	public Cliente getCliente() {
@@ -46,7 +46,7 @@ public class CompraException extends RuntimeException{
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	*/
 	
 
 }

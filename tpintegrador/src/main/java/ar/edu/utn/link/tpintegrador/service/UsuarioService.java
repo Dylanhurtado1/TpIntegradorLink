@@ -28,6 +28,11 @@ public class UsuarioService {
 	    public Optional<Usuario1> getByNombre(String nombre){
 	        return usuarioRepository.findByNombre(nombre);
 	    }
+	    
+	    public Optional<Usuario1> getByNombreUsuario(String nombre){
+	        return usuarioRepository.findByNombreUsuario(nombre);
+	    }
+
 
 	    public void  save(Usuario1 usuario){
 	        usuarioRepository.save(usuario);

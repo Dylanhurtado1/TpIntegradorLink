@@ -14,12 +14,17 @@ import ar.edu.utn.link.tpintegrador.security.repository.RolRepository;
 @Transactional
 public class RolService {
 
-	  @Autowired
+	    @Autowired
 	    RolRepository rolRepository;
 
 	    public Optional<Rol> getByRolNombre(RolNombre rolNombre){
 	        return rolRepository.findByRolNombre(rolNombre);
 	    }
+	    
+	    public Optional<Rol> findByProfile(int profileId){
+	        return rolRepository.findById(profileId);
+	    }
+	    
 
 	    public void save(Rol rol){
 	        rolRepository.save(rol);

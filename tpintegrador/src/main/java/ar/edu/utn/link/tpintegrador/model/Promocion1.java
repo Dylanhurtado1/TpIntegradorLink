@@ -1,5 +1,6 @@
 package ar.edu.utn.link.tpintegrador.model;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,22 +8,35 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Promocion1 {
-
+//@Inheritance(strategy = InheritanceType.JOINED) SOLO ESTO ESTABA ANTES
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo")
+public  class Promocion1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-
-	String nombre;
 	
+	private String nombre;
     Float descuento;
 
-	public void aplicarDescuento(Producto producto) {
+    //esto funcionara?
+	public  void aplicarDescuento(Producto producto) {
+		
+	}
 
+	public Promocion1(String nombre, Float descuento) {
+		super();
+		this.nombre = nombre;
+		this.descuento = descuento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Integer getId() {
@@ -33,10 +47,9 @@ public abstract class Promocion1 {
 		this.id = id;
 	}
 
-	public Promocion1(Integer id, String nombre) {
+	public Promocion1(Float descuento) {
 		super();
-		this.id = id;
-		this.nombre = nombre;
+		this.descuento = descuento;
 	}
 
 	public Promocion1() {

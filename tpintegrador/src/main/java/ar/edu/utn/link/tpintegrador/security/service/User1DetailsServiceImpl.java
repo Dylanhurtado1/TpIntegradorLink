@@ -20,8 +20,8 @@ public class User1DetailsServiceImpl implements UserDetailsService {
 	
 	@Override// seguridad de Spring
 	public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-		Usuario1 usuario = usuarioService.getByNombreUsuario(nombreUsuario).get();
-		return UsuarioPrincipal.build(usuario);
+		Usuario1 usuario = usuarioService.getByNombreUsuario(nombreUsuario).get();//encuentra al usuario
+		return UsuarioPrincipal.build(usuario); //y me crea un usuarioPrincipal con autoridades
 	}
 
 	

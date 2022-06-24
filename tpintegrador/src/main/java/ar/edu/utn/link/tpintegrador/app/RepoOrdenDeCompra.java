@@ -15,8 +15,5 @@ import ar.edu.utn.link.tpintegrador.model.OrdenDeCompra;
 public interface RepoOrdenDeCompra extends JpaRepository<OrdenDeCompra, Integer> {
 
 
-	Optional<OrdenDeCompra> findByNombre(String nombre);
-	
-	boolean existsByNombre(String nombre);
 	
 }

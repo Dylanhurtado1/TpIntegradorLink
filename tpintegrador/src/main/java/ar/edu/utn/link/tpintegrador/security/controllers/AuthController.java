@@ -1,6 +1,7 @@
 package ar.edu.utn.link.tpintegrador.security.controllers;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -37,53 +38,51 @@ import ar.edu.utn.link.tpintegrador.security.service.Usuario1Service;
 @CrossOrigin
 public class AuthController {
 
-	  @Autowired
-	    PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;//esto lo tuve que averiguar
 
-	    @Autowired
-	    AuthenticationManager authenticationManager;
+	@Autowired
+	AuthenticationManager authenticationManager;//tuve que averiguar para que sirve
 
-	    @Autowired
-	    Usuario1Service usuarioService;
+	@Autowired
+	Usuario1Service usuarioService;
 
-	    @Autowired
-	    RolService rolService;
+	@Autowired
+	RolService rolService;
 
-	    @Autowired
-	    JwtProvider jwtProvider;
+	@Autowired
+	JwtProvider jwtProvider;
 
-	    @PostMapping("/nuevo") //dar de alta usuarios
-	    public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
-	        if(bindingResult.hasErrors())
-	            return new ResponseEntity(new Mensaje("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
-	        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
-	            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-	        if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
-	            return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
-	        Usuario1 usuario =
-	                new Usuario1(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),
-	                        passwordEncoder.encode(nuevoUsuario.getPassword()));
-	        Set<Rol> roles = new HashSet<>();
-	        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
-	        if(nuevoUsuario.getRoles().contains("vendedor"))
-	            roles.add(rolService.getByRolNombre(RolNombre.ROLE_VENDEDOR).get());
-	        usuario.setRoles(roles);
-	        usuarioService.save(usuario);
-	        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
-	   }
+	@PostMapping("/nuevo") // dar de alta usuarios
+	public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return new ResponseEntity(new Mensaje("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
+		if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+			return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+		if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
+			return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
+		Usuario1 usuario = new Usuario1(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
+				nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()), nuevoUsuario.getProfile());
+		Set<Rol> roles = new HashSet<>();
+		roles.add(rolService.findByProfile(nuevoUsuario.getProfile()).get());
+		usuario.setRoles(roles);
+		usuarioService.save(usuario);
+		return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
+	}
 
-	    @PostMapping("/login") //matchea con un usuario que ya existe, y devuelve el token, con ese token puedo matchear el productos
-	    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
-	        if(bindingResult.hasErrors())
-	            return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
-	        Authentication authentication =
-	                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
-	        SecurityContextHolder.getContext().setAuthentication(authentication);
-	        String jwt = jwtProvider.generateToken(authentication);
-	        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
-	        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-	        return new ResponseEntity(jwtDto, HttpStatus.OK);
-	    }
-	
-	
+	@PostMapping("/login") // matchea con un usuario que ya existe, y devuelve el token
+	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		String jwt = jwtProvider.generateToken(authentication);
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+	Optional<Usuario1> usuario = usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario()) ;
+		jwtDto.setUsuario(usuario.get());
+		return new ResponseEntity(jwtDto, HttpStatus.OK);
+	}
+
 }

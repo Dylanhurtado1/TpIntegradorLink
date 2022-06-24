@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class NuevoUsuario {
+public class NuevoUsuario { //todos estos atributos lo tendria el vendedor tambien
 
 	  @NotBlank
 	    private String nombre;
@@ -18,7 +18,18 @@ public class NuevoUsuario {
 	    private String password;
 	    private Set<String> roles = new HashSet<>();
 
-	    public String getNombre() {
+	    private int profile;
+	    
+	    
+	    public int getProfile() {
+			return profile;
+		}
+
+		public void setProfile(int profile) {
+			this.profile = profile;
+		}
+
+		public String getNombre() {
 	        return nombre;
 	    }
 

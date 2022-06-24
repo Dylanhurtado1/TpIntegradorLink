@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 
 import ar.edu.utn.link.tpintegrador.model.Producto;
-import ar.edu.utn.link.tpintegrador.model.Proveedor;
+
 
 public interface VendedorDTO {
 
@@ -22,7 +22,6 @@ public interface VendedorDTO {
 	@Value("#{target.productos}")
 	List<Producto> getProductos();
 
-	@Value("#{target.proveedores}")
-	List<Proveedor> getProveedores();
+	
 
 }

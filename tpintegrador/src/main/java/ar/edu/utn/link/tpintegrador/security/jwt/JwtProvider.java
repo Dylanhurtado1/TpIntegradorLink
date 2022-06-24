@@ -17,7 +17,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 @Component
-public class JwtProvider {
+public class JwtProvider {//genera el token, y validacion del token
 
 	   private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
@@ -30,7 +30,7 @@ public class JwtProvider {
 	    //LO IMPORTANTE, GENERA EL TOKENNN
 	    public String generateToken(Authentication authentication){
 	        UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();//casteo para tener su autenticacion
-	        return Jwts.builder().setSubject(usuarioPrincipal.getUsername()) // aca hace la magia de generar el token
+	        return Jwts.builder().setSubject(usuarioPrincipal.getUsername()) // al nombre de ese usuario se le genera el token
 	                .setIssuedAt(new Date())
 	                .setExpiration(new Date(new Date().getTime() + expiration * 1000))//la expiracion
 	                .signWith(SignatureAlgorithm.HS512, secret)

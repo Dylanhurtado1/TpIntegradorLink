@@ -4,20 +4,30 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
+
 public class JwtDto {
 
 	  private String token;
 	    private String bearer = "Bearer";
 	    private String nombreUsuario;
 	    private Collection<? extends GrantedAuthority> authorities;
-
+       private Usuario1 usuario;//esto lo puse ahora
 	    public JwtDto(String token, String nombreUsuario, Collection<? extends GrantedAuthority> authorities) {
 	        this.token = token;
 	        this.nombreUsuario = nombreUsuario;
 	        this.authorities = authorities;
 	    }
 
-	    public String getToken() {
+	    public Usuario1 getUsuario() {
+			return usuario;
+		}
+
+		public void setUsuario(Usuario1 usuario) {
+			this.usuario = usuario;
+		}
+
+		public String getToken() {
 	        return token;
 	    }
 

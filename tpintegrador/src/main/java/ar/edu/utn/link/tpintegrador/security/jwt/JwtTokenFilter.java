@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import ar.edu.utn.link.tpintegrador.security.service.User1DetailsServiceImpl;
 
-public class JwtTokenFilter  extends OncePerRequestFilter {
+public class JwtTokenFilter  extends OncePerRequestFilter {//se ejecuta por cada peticion, si es valido al token da acceso al recurso
 
 	   private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
@@ -27,7 +27,7 @@ public class JwtTokenFilter  extends OncePerRequestFilter {
 	    @Autowired
 	    User1DetailsServiceImpl userDetailsService;
 	    
-	    //USER DETAILS ES UNA LIBRERIAAA
+	   
 
 	    @Override //comprueba la autenticacion, y valida el token
 	    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
@@ -38,8 +38,8 @@ public class JwtTokenFilter  extends OncePerRequestFilter {
 	                UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario); //carga el usuario segun ese nombreUsuario
 	                UsernamePasswordAuthenticationToken auth =
 	                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-	                SecurityContextHolder.getContext().setAuthentication(auth);
-	            }//esto nose como funciona xD
+	                SecurityContextHolder.getContext().setAuthentication(auth);//dificil de explicar
+	            }
 	        } catch (Exception e){
 	            logger.error("fail en el método doFilter " + e.getMessage());
 	        }

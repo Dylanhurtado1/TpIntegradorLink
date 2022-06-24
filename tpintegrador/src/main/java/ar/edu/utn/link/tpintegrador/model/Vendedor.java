@@ -8,18 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
+
 @Entity
-public class Vendedor {
+public class Vendedor { // voy a modificar esto
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	private String nombre;
 	private String apellido;
 
 	@OneToMany
-	private Collection<Producto> productos;
-	@OneToMany // un vendedor tiene muchos proveedores
-	private Collection<Proveedor> proveedores;
+	private Collection<Producto> productosAVender;
+	//@OneToMany // un vendedor tiene muchos proveedores
+	//private Collection<Proveedor> proveedores;
 
 	public String getNombre() {
 		return nombre;
@@ -35,40 +38,33 @@ public class Vendedor {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
+	} 
 
-	public Vendedor(String nombre, String apellido) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-	}
-
+	
 	public Vendedor() {
 		super();
 	}
 
+	public Vendedor(Collection<Producto> productosAVender) {
+		super();
+		this.productosAVender = productosAVender;
+	}
+
 	public Collection<Producto> getProductos() {
-		return productos;
+		return productosAVender;
 	}
 
 	public void setProductos(Collection<Producto> productos) {
-		this.productos = productos;
+		this.productosAVender = productos;
 	}
 
-	public Collection<Proveedor> getProveedores() {
-		return proveedores;
-	}
-
-	public void setProveedores(Collection<Proveedor> proveedores) {
-		this.proveedores = proveedores;
-	}
-
-	public Vendedor(String nombre, String apellido, Collection<Producto> productos, Collection<Proveedor> proveedores) {
+	public Vendedor(String nombre, String apellido, Collection<Producto> productosAVender) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.productos = productos;
-		this.proveedores = proveedores;
+		this.productosAVender = productosAVender;
 	}
+
+	
 
 }

@@ -25,9 +25,9 @@ public class OrdenService {
 		return ordenRepository.findById(id);
 	}
 
-	public Optional<OrdenDeCompra> getByNombre(String nombre) {
-		return ordenRepository.findByNombre(nombre);
-	}
+	//public Optional<OrdenDeCompra> getByNombre(String nombre) {
+	//	return ordenRepository.findByNombre(nombre);
+	//}
 
 	public void save(OrdenDeCompra orden) {
 		ordenRepository.save(orden);
@@ -41,7 +41,7 @@ public class OrdenService {
 		return ordenRepository.existsById(id);
 	}
 
-	public boolean existsByNombre(String nombre){
-	 return ordenRepository.existsByNombre(nombre);
-	 } 
+	//public boolean existsByNombre(String nombre){
+	// return ordenRepository.existsByNombre(nombre);
+	// } 
 }

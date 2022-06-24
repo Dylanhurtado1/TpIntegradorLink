@@ -17,11 +17,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import ar.edu.utn.link.tpintegrador.model.Carrito;
 import ar.edu.utn.link.tpintegrador.model.Producto;
+import ar.edu.utn.link.tpintegrador.model.Promocion1;
 
 @Entity
-public class Usuario1 {
+public class Usuario1 {// esta es la que va a la base de datos
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +35,17 @@ public class Usuario1 {
 	private String email;
 	@NotNull
 	private String password;
-    @OneToOne
-    private Carrito carrito;
+	@OneToMany
+	private Collection<Producto> productosComprados;// esto re necesario
+
+	@OneToMany
+	private Collection<Producto> productosAVender;
+
+	@OneToOne // justo este momento estoy agregando estooo
+
+	private Promocion1 promocion;
+
+	private int profile;
 
 	@NotNull
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -44,23 +53,78 @@ public class Usuario1 {
 																						// usuario_id y rol_id
 			inverseJoinColumns = @JoinColumn(name = "rol_id"))
 	private Set<Rol> roles = new HashSet<>(); // muchos a muchos
-
-	@OneToMany
-	private Collection<Producto> productosComprados;
-
-	public Usuario1() {
-	}
 	
-	public void agregarACarrito(Producto p) {
-		carrito.getProductos().add(p);//carrito me da su lista de productos y agrego p
-	}
+	
+	
 
 	public Usuario1(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
-			@NotNull String password) {
+			@NotNull String password, Collection<Producto> productosAVender, int profile) {
+		super();
 		this.nombre = nombre;
 		this.nombreUsuario = nombreUsuario;
 		this.email = email;
 		this.password = password;
+		this.productosAVender = productosAVender;
+		this.profile = profile;
+	}
+
+	public Usuario1(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
+			@NotNull String password, Promocion1 promocion, int profile) {
+		super();
+		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+		this.promocion = promocion;
+		this.profile = profile;
+	}
+
+	public int getProfile() {
+		return profile;
+	}
+
+	public void setProfile(int profile) {
+		this.profile = profile;
+	}
+
+	public Collection<Producto> getProductosComprados() {
+		return productosComprados;
+	}
+
+	public void setProductosComprados(Collection<Producto> productosComprados) {
+		this.productosComprados = productosComprados;
+	}
+
+	public Collection<Producto> getProductosAVender() {
+		return productosAVender;
+	}
+
+	public void setProductosAVender(Collection<Producto> productosAVender) {
+		this.productosAVender = productosAVender;
+	}
+
+	public Promocion1 getPromocion() {
+		return promocion;
+	}
+
+	public void setPromocion(Promocion1 promocion) {
+		this.promocion = promocion;
+	}
+
+	public Usuario1() {
+	}
+
+	// public void agregarACarrito(Producto p) {
+//		carrito.getProductos().add(p);//carrito me da su lista de productos y agrego p
+//	}
+
+	public Usuario1(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
+			@NotNull String password, int profile) {
+		this.nombre = nombre;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+		this.profile = profile;
 	}
 
 	public Usuario1(int id, @NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
@@ -124,6 +188,7 @@ public class Usuario1 {
 
 	public void comprar(Producto producto) {
 		this.productosComprados.add(producto);
+
 	}
 
 	public Collection<Producto> getProductos() {
@@ -144,28 +209,5 @@ public class Usuario1 {
 		this.roles = roles;
 		this.productosComprados = productos;
 	}
-
-	public Carrito getCarrito() {
-		return carrito;
-	}
-
-	public void setCarrito(Carrito carrito) {
-		this.carrito = carrito;
-	}
-
-	public Usuario1(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email,
-			@NotNull String password, Carrito carrito, @NotNull Set<Rol> roles, Collection<Producto> productos) {
-		super();
-		this.nombre = nombre;
-		this.nombreUsuario = nombreUsuario;
-		this.email = email;
-		this.password = password;
-		this.carrito = carrito;
-		this.roles = roles;
-		this.productosComprados = productos;
-	}
-
-
-
 
 }

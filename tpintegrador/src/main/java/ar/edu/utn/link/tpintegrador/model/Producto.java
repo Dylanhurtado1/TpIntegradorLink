@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
+
 @Entity
 public class Producto {
 
@@ -15,32 +17,28 @@ public class Producto {
 
 	private String nombre;
 	private Float precio;
-	@ManyToOne//un producto tiene muchos vendedores
-	private Vendedor vendedor;
-	private String nombreVendedor;
+	@ManyToOne // un producto tiene muchos vendedores
+	private Usuario1 usuario;
+	
+	
 
-	public Producto(String nombre, Float precio, Vendedor vendedor, String nombreVendedor) {
+	
+
+
+	public Producto(String nombre, Float precio, Usuario1 usuario) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
-		this.vendedor = vendedor;
-		this.nombreVendedor = nombreVendedor;
+		this.usuario = usuario;
 	}
 
-	public Vendedor getVendedor() {
-		return vendedor;
+
+	public Usuario1 getUsuario() {
+		return usuario;
 	}
 
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
-	public String getNombreVendedor() {
-		return nombreVendedor;
-	}
-
-	public void setNombreVendedor(String nombreVendedor) {
-		this.nombreVendedor = nombreVendedor;
+	public void setUsuario(Usuario1 usuario) {
+		this.usuario = usuario;
 	}
 
 	public Producto(String nombre, Float precio) {
@@ -77,7 +75,7 @@ public class Producto {
 		precio = precio - descuento;
 	}
 
-
+	
 
 	public Producto() {
 		super();
@@ -104,8 +102,5 @@ public class Producto {
 	// Producto other = (Producto) obj;
 	// return Objects.equals(nombre, other.nombre);
 	// }
-
-
-
 
 }

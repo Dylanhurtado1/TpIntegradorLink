@@ -21,11 +21,11 @@ public class OrdenController {
 	@Autowired
 	OrdenService ordenService;
 	
-	  @GetMapping("/detail/{id}") //devuelve el obejto ordenDeCompra con esa id
-	    public ResponseEntity<OrdenDeCompra> getById(@PathVariable("id") int id){
-	        if(!ordenService.existsById(id))
+	  @GetMapping("/detail/{idOrden}") //devuelve el obejto ordenDeCompra con esa id
+	    public ResponseEntity<OrdenDeCompra> getById(@PathVariable("idOrden") int idOrden){
+	        if(!ordenService.existsById(idOrden))
 	            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-	        OrdenDeCompra orden = ordenService.getOne(id).get(); // solo retorna un producto con ese id, lo mismo debe pasar con orden De Compra
+	        OrdenDeCompra orden = ordenService.getOne(idOrden).get(); // solo retorna una orden  con ese id
 	        return new ResponseEntity(orden, HttpStatus.OK); //responde con un producto
 	    }
 	

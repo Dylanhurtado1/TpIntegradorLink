@@ -10,7 +10,7 @@ import ar.edu.utn.link.tpintegrador.security.entity.Usuario1;
 import ar.edu.utn.link.tpintegrador.security.repository.Usuario1Repository;
 
 @Service
-@Transactional
+@Transactional//mantener la coherencia en la bd, varios accesos, si algo sale mal se hace un rollback
 public class Usuario1Service {
 
 	 @Autowired
